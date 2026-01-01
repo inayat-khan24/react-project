@@ -3,17 +3,19 @@ import { Eye, EyeOff } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 import { toast, ToastContainer } from "react-toastify";
+import { useDispatch } from 'react-redux';
+import { login } from '../store/authSlice.js';
 
 
 const Login = () => {
   const [email, setEmail] = useState('niravparmar@gmail.com');
   const [password, setPassword] = useState('12345678');
   const [showPassword, setShowPassword] = useState(false);
-  
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 const handleLogin = (e)=>{
     e.preventDefault()
- e.preventDefault();
+
     const dummyEmail = "niravparmar@gmail.com"
     const dummyPassword = "12345678"
     
@@ -33,7 +35,7 @@ const handleLogin = (e)=>{
     }
       toast.success("Login successful")
   
-
+dispatch(login({ user: { email, name: 'Nirav Parmar' } }));
     setTimeout(() => {
       navigate("/admin")
     }, 1000)
